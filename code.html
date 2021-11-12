@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Brian Wiggins</title>
+    <title>Rewind: A Coding Project By Brian Wiggins</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <!--===Nav Section===-->
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="./img/3dcube.png" class="d-inline-block align-text-top" width="30" height="24"> App Name</a>
+            <a class="navbar-brand" href="#"><img src="./img/3dcube.png" class="d-inline-block align-text-top" width="30" height="24"> Rewind</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -52,21 +52,73 @@
     <!--===Main Section===-->
     <main class="flex-shrink-0">
         <div class="container py-5 px-5 mt-5"> 
-            <h2 class="border-1 border-bottom border-dark">The Code for APP NAME</h2>
+            <h2 class="border-1 border-bottom border-dark">The Code for Rewind</h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                            //Call Hello
-                            function HelloWorld(){
-                                alert("Hello World");
+                        // Rewind Javascript
+
+                        //Event Listener
+                        let runRewind=document.getElementById("btnSubmit");
+                        runRewind.addEventListener("click", StartRewind);
+                        
+                        //Main Function
+                        function StartRewind(){
+                            
+                            //Get input values
+                            let inputText=document.getElementById("inputText").value;
+                        
+                            //Validate text entry to assure there is at least 1 character
+                            if(inputText.length===0){
+                                errorMessage="Please put in at least one character.";
+                                let errorMessageDisplay=document.getElementById("validation-summary");
+                                errorMessageDisplay.innerHTML=errorMessage;
                             }
+                            
+                            //Call Reverse String function
+                            let reveresedString=GetReverseString(inputText);
+                            
+                            //Place on screen
+                            ResultToScreen(reveresedString);
+                        }
+                        
+                        // function to reverse string
+                        function GetReverseString(inputText){
+                            let reversedString=[];
+                            for(let i=inputText.length-1;i>=0 ;i--){
+                                reversedString.push(inputText[i]);
+                            }
+                            
+                            return reversedString;
+                        }
+                        
+                        //Place result of character array to screen
+                        function ResultToScreen(outputText){
+                            let fullString=outputText.join("");
+                            let outputField=document.getElementById("outputTextField");
+                            outputField.innerHTML=fullString;
+                        }
                     </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
                     <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays the message "Hello World"</p>
+                    <h5>Event Listener</h5>
+                    <p>This is the javascript event listener for the "Run Program" button to start the Code Rewind Program</p>
+                    <h5>StartRewind</h5>
+                    <p>This function gets the input text from the text box and stores it in a variable of type string.  Then it runs a validation check
+                        to see if at least one character is entered in the text box.  If there is no characters, then an error message is triggered.  If there is no error message,
+                        then the <b>GetReverseString</b> method is called to reverse the letters and the <b>ResultToScreen</b> method is used to display the results on the screen.
+                    </p>
+                    <h5>GetReverseString</h5>
+                    <p>This method accepts a string input and parces all of the characters in the string in an array, then it reverses the order using a for loop to reverse all
+                        the characters in the string.  The output is an array of reversed characters.
+                    </p>
+                    <h5>ResultToScreen</h5>
+                    <p>This method accepts outputText as an array of characters and joins them together then takes the resulting string and adds it to the HTML element with 
+                        an id of "outputTextField".
+</p>
+                    </p>
                 </div>
             </div>
         </div>
